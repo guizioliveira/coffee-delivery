@@ -6,26 +6,12 @@ export const HeaderContainer = styled.header`
 
   display: flex;
   align-items: center;
+  justify-content: space-between;
 
   nav {
     display: flex;
     align-items: center;
-    justify-content: space-between;
-
-    width: 100%;
-    max-width: 1120px;
-    margin: 0 auto;
-
-    div {
-      display: flex;
-      align-items: center;
-      gap: 0.75rem;
-    }
-
-    @media screen and (max-width: 1200px) {
-      width: 100%;
-      padding: 0 2rem;
-    }
+    gap: 0.75rem;
   }
 `
 
