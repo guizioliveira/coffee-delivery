@@ -13,6 +13,8 @@ export const defaultTheme = {
     title: '#272221',
   },
 
+  gray: '#574F4D',
+
   yellow: '#DBAC2C',
   'yellow-light': '#F1E9C9',
   'yellow-dark': '#C47F17',
