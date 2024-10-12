@@ -47,9 +47,11 @@ export const GlobalStyle = createGlobalStyle`
 
   h4 {
     font-size: 1.25rem;
+    font-weight: bold;
   }
 
   h5 {
     font-size: 1.125rem;
+    font-weight: bold;
   }
 `
