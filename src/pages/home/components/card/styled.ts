@@ -1,4 +1,4 @@
-import styled from 'styled-components'
+import styled, { css } from 'styled-components'
 
 export const CardContainer = styled.div`
   display: flex;
@@ -12,7 +12,8 @@ export const CardContainer = styled.div`
   padding: 20px;
 
   border-radius: 6px 36px 6px 36px;
-  background: ${(props) => props.theme.base.card};
+
+  background: ${(props) => props.theme.colors.base.card};
 `
 
 export const CardContent = styled.div`
@@ -37,11 +38,12 @@ export const Tag = styled.div`
   padding: 0.25rem 0.5rem;
   border-radius: 1000px;
 
-  background: ${(props) => props.theme['yellow-light']};
-  color: ${(props) => props.theme['yellow-dark']};
+  ${({ theme }) => css`
+    background: ${theme.colors['yellow-light']};
+    color: ${theme.colors['yellow-dark']};
+    font: ${theme.fonts.roboto.tag};
+  `}
 
-  font-size: 0.625rem;
-  font-weight: bold;
   text-transform: uppercase;
 `
 
@@ -49,13 +51,15 @@ export const CardTitle = styled.h4`
   margin-top: 1rem;
   margin-bottom: 0.5rem;
 
-  color: ${(props) => props.theme.base.subtitle};
+  color: ${(props) => props.theme.colors.base.subtitle};
 `
 
 export const CardLabel = styled.span`
-  color: ${(props) => props.theme.base.label};
+  ${({ theme }) => css`
+    color: ${theme.colors.base.label};
+    font: ${theme.fonts.roboto.textSRegular};
+  `}
 
-  font-size: 0.875rem;
   text-align: center;
 `
 
@@ -79,24 +83,24 @@ export const StateButton = styled.button`
 
   cursor: pointer;
 
-  background: ${(props) => props.theme.purple};
-  color: ${(props) => props.theme.base.card};
+  ${({ theme }) => css`
+    background: ${theme.colors.purple};
+    color: ${theme.colors.base.card};
 
-  &:hover {
-    background: ${(props) => props.theme['purple-dark']};
-  }
+    &:hover {
+      background: ${theme.colors['purple-dark']};
+    }
+  `}
 `
 
 export const Price = styled.p`
-  font-family: 'Baloo 2', sans-serif;
-  font-weight: 900;
-  font-size: 1.5rem;
+  ${({ theme }) => css`
+    font: ${theme.fonts.baloo.titleM};
 
-  &::before {
-    content: 'R$';
-    font-size: 0.875rem;
-    font-weight: 400;
-    font-size: 'Roboto', sans-serif;
-    margin-right: 2px;
-  }
+    &::before {
+      content: 'R$';
+      font: ${theme.fonts.roboto.textSRegular};
+      margin-right: 2px;
+    }
+  `}
 `

@@ -1,4 +1,4 @@
-import { createGlobalStyle } from 'styled-components'
+import { createGlobalStyle, css } from 'styled-components'
 
 export const GlobalStyle = createGlobalStyle`
  * {
@@ -13,45 +13,37 @@ export const GlobalStyle = createGlobalStyle`
   }
 
   body {
-    background: ${(props) => props.theme.background};
-    color: ${(props) => props.theme.base.text};
+    ${({ theme }) => css`
+      background: ${theme.colors.background};
+      color: ${theme.colors.base.text};
+    `}
     -webkit-font-smoothing: antialiased;
   }
 
-  body, input, textarea, button {
-    font-family: 'Roboto', sans-serif;
-    font-weight: 400;
-    font-size: 1rem;
+  body, input, textarea, button, p, span, text {
+    font: ${(props) => props.theme.fonts.roboto.textMRegular}
   }
 
-  h1, h2, h3, h4, h5 {
-    font-family: "Baloo 2", sans-serif;
-    line-height: 130%;
-  }
 
-  p, span, text {
-    line-height: 130%
-  }
+  ${({ theme }) => css`
+    h1 {
+      font: ${theme.fonts.baloo.titleXL};
+    }
 
-  h1 {
-    font-size: 3rem;
-  }
+    h2 {
+      font: ${theme.fonts.baloo.titleL};
+    }
 
-  h2 {
-    font-size: 2rem;
-  }
+    h3 {
+      font: ${theme.fonts.baloo.titleM};
+    }
 
-  h3 {
-    font-size: 1.5rem;
-  }
+    h4 {
+      font: ${theme.fonts.baloo.titleS};
+    }
 
-  h4 {
-    font-size: 1.25rem;
-    font-weight: bold;
-  }
-
-  h5 {
-    font-size: 1.125rem;
-    font-weight: bold;
-  }
+    h5 {
+      font: ${theme.fonts.baloo.titleXS};
+    }
+  `}
 `

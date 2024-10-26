@@ -1,4 +1,4 @@
-import styled from 'styled-components'
+import styled, { css } from 'styled-components'
 
 export const HeaderContainer = styled.header`
   width: 100%;
@@ -24,14 +24,16 @@ export const LocationButton = styled.button`
   border-radius: 8px;
   cursor: pointer;
 
-  background: ${(props) => props.theme['purple-light']};
-  color: ${(props) => props.theme['purple-dark']};
+  ${({ theme }) => css`
+    background: ${theme.colors['purple-light']};
+    color: ${theme.colors['purple-dark']};
 
-  font-size: 0.875rem;
+    font: ${theme.fonts.roboto.textSRegular};
 
-  svg {
-    fill: ${(props) => props.theme.purple};
-  }
+    svg {
+      fill: ${theme.colors.purple};
+    }
+  `}
 `
 
 interface CartButtonProps {
@@ -46,14 +48,17 @@ export const CartButton = styled.div<CartButtonProps>`
   border: none;
   border-radius: 8px;
   cursor: pointer;
-  background: ${(props) => props.theme['yellow-light']};
-  color: ${(props) => props.theme['yellow-dark']};
 
-  ${(props) =>
-    props.content !== 0 &&
+  ${({ theme }) => css`
+    background: ${theme.colors['yellow-light']};
+    color: ${theme.colors['yellow-dark']};
+  `}
+
+  ${({ theme, content }) =>
+    content !== 0 &&
     `
     &:after {
-      content: '${props.content}'; /* Dynamically sets the content based on the prop */
+      content: '${content}'; /* Dynamically sets the content based on the prop */
 
       display: flex;
       justify-content: center;
@@ -71,7 +76,7 @@ export const CartButton = styled.div<CartButtonProps>`
       font-weight: bold;
 
       color: white;
-      background: ${props.theme['yellow-dark']};
+      background: ${theme.colors['yellow-dark']};
     }
   `}
 `

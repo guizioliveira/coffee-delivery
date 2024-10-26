@@ -1,22 +1,17 @@
 import { Card } from './components/card'
 import { Hero } from './components/hero'
+import { ContentGrid } from './styles'
 
 export function Home() {
   return (
     <main>
       <Hero />
 
-      <div
-        style={{
-          display: 'grid',
-          gridTemplateColumns: 'repeat(4, 1fr)',
-          gap: '2.5rem 2rem',
-        }}
-      >
+      <ContentGrid>
         {Array.from({ length: 20 }).map((_, i) => (
           <Card key={i} />
         ))}
-      </div>
+      </ContentGrid>
     </main>
   )
 }

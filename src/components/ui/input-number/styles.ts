@@ -1,4 +1,4 @@
-import styled from 'styled-components'
+import styled, { css } from 'styled-components'
 
 export const Input = styled.div`
   display: flex;
@@ -8,19 +8,21 @@ export const Input = styled.div`
   padding: 0.5rem;
   border-radius: 6px;
 
-  background: ${(props) => props.theme.base.button};
-  color: ${(props) => props.theme.base.title};
+  ${({ theme }) => css`
+    background: ${theme.colors.base.button};
+    color: ${theme.colors.base.title};
 
-  button {
-    width: 0.875rem;
-    height: 0.875rem;
-    border: 0;
+    button {
+      width: 0.875rem;
+      height: 0.875rem;
+      border: 0;
 
-    cursor: pointer;
+      cursor: pointer;
 
-    background: transparent;
-    color: ${(props) => props.theme.purple};
-  }
+      background: transparent;
+      color: ${theme.colors.purple};
+    }
+  `}
 `
 
 export const CartAction = styled.div`

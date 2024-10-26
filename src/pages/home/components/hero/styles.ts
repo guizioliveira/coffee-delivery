@@ -1,4 +1,4 @@
-import styled from 'styled-components'
+import styled, { css } from 'styled-components'
 
 export const HeroContainer = styled.div`
   display: flex;
@@ -38,14 +38,16 @@ export const HighlightBox = styled.div`
   flex-direction: column;
   gap: 1rem;
 
-  h1 {
-    color: ${(props) => props.theme.base.title};
-  }
+  ${({ theme }) => css`
+    h1 {
+      color: ${theme.colors.base.title};
+    }
 
-  p {
-    font-size: 1.25rem;
-    color: ${(props) => props.theme.base.subtitle};
-  }
+    p {
+      font: ${theme.fonts.roboto.textLRegular};
+      color: ${theme.colors.base.subtitle};
+    }
+  `}
 `
 
 export const Grid = styled.div`
@@ -80,9 +82,11 @@ export const Icon = styled.div<IconProps>`
   height: 2rem;
   border-radius: 50%;
 
-  background: ${(props) => props.theme[props.bgColor]};
+  ${({ theme, bgColor }) => css`
+    background: ${theme.colors[bgColor]};
 
-  svg {
-    fill: ${(props) => props.theme.white};
-  }
+    svg {
+      fill: ${theme.colors.white};
+    }
+  `}
 `
