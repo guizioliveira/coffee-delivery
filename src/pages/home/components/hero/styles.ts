@@ -86,7 +86,7 @@ export const Icon = styled.div<IconProps>`
     background: ${theme.colors[bgColor]};
 
     svg {
-      fill: ${theme.colors.white};
+      fill: ${theme.colors.base.white};
     }
   `}
 `

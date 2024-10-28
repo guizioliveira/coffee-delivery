@@ -1,9 +1,9 @@
 export const defaultTheme = {
   colors: {
-    white: '#FFF',
     background: '#FAFAFA',
 
     base: {
+      white: '#FFF',
       card: '#F3F2F2',
       input: '#EDEDED',
       button: '#E6E5E5',
@@ -13,6 +13,7 @@ export const defaultTheme = {
       subtitle: '#403937',
       title: '#272221',
     },
+
     gray: '#574F4D',
 
     yellow: '#DBAC2C',
