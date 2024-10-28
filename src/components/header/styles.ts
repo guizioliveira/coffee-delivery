@@ -58,7 +58,7 @@ export const CartButton = styled.div<CartButtonProps>`
     content !== 0 &&
     `
     &:after {
-      content: '${content}'; /* Dynamically sets the content based on the prop */
+      content: '${content}';
 
       display: flex;
       justify-content: center;
