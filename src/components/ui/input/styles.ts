@@ -4,6 +4,7 @@ export const Input = styled.input`
   ${({ theme }) => css`
     background-color: ${theme.colors.base.input};
     font: ${theme.fonts.roboto.textSRegular};
+    color: ${theme.colors.base.text};
 
     ::placeholder {
       color: ${theme.colors.base.label};
