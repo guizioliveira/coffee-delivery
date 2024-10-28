@@ -1,7 +1,8 @@
-import { Input } from '@/components/ui/input'
-import { Container, GridThreeColumns, GridTwoColumns, Section } from './styles'
 import * as Box from '@/components/ui/box'
+import { Button } from '@/components/ui/button'
+import { Input } from '@/components/ui/input'
 import Spacing from '@/components/ui/spacing'
+import { Container, GridThreeColumns, GridTwoColumns, Section } from './styles'
 import { MapPinLine, CurrencyDollar } from 'phosphor-react'
 
 export function Checkout() {
@@ -44,7 +45,11 @@ export function Checkout() {
 
         <Section size={448}>
           <h5>Cafés selecionados</h5>
-          <Box.root>Text</Box.root>
+          <Box.root>
+            <Box.content>
+              <Button>confirmar pedido</Button>
+            </Box.content>
+          </Box.root>
         </Section>
       </Container>
     </main>
