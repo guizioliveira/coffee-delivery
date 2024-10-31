@@ -104,3 +104,8 @@ export const Price = styled.p`
     }
   `}
 `
+
+export const CartAction = styled.div`
+  display: flex;
+  gap: 0.5rem;
+`

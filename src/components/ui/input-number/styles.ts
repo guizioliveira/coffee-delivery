@@ -5,7 +5,7 @@ export const Input = styled.div`
   align-items: center;
   gap: 0.5rem;
 
-  padding: 0.5rem;
+  padding: 0.3rem 0.5rem;
   border-radius: 6px;
 
   ${({ theme }) => css`
@@ -13,6 +13,8 @@ export const Input = styled.div`
     color: ${theme.colors.base.title};
 
     button {
+      display: flex;
+      align-items: center;
       width: 0.875rem;
       height: 0.875rem;
       border: 0;
@@ -23,9 +25,4 @@ export const Input = styled.div`
       color: ${theme.colors.purple};
     }
   `}
-`
-
-export const CartAction = styled.div`
-  display: flex;
-  gap: 0.5rem;
 `

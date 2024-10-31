@@ -10,9 +10,9 @@ import {
   Price,
   StateButton,
   Tag,
+  CartAction,
 } from './styled'
 import { InputNumber } from '@/components/ui/input-number'
-import { CartAction } from '@/components/ui/input-number/styles'
 
 export function Card() {
   return (
