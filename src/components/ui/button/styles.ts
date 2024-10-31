@@ -39,4 +39,8 @@ export const Button = styled.button<ButtonProps>`
   cursor: pointer;
 
   ${({ variant = 'primary' }) => variantStyles[variant]}
+
+  svg {
+    color: ${(props) => props.theme.colors.purple};
+  }
 `
