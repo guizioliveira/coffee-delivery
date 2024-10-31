@@ -7,7 +7,7 @@ import {
   Icon,
   TextContent,
 } from './styles'
-import coffeeHighLight from '@assets/coffee.png'
+import coffeeHighLight from '@/assets/coffee.png'
 
 export function Hero() {
   return (
