@@ -1,5 +1,5 @@
 import { createServer, Model } from 'miragejs'
-import { coffeeData } from '../data/coffeeData'
+import { coffeeData } from '../mock/coffeeData'
 import { Coffee } from '@/types'
 
 export function makeServer() {
