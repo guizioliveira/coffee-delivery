@@ -9,6 +9,7 @@ export const HeroContainer = styled.div`
 
   @media screen and (max-width: 993px) {
     flex-direction: column;
+    margin-bottom: 3rem;
   }
 
   @media screen and (max-width: 545px) {
@@ -72,7 +73,9 @@ interface IconProps {
   children: React.ReactNode
 }
 
-export const Icon = styled.div<IconProps>`
+export const Icon = styled.div.withConfig({
+  shouldForwardProp: (prop) => prop !== 'bgColor',
+})<IconProps>`
   display: flex;
   flex-shrink: 0;
   align-items: center;
@@ -83,7 +86,7 @@ export const Icon = styled.div<IconProps>`
   border-radius: 50%;
 
   ${({ theme, bgColor }) => css`
-    background: ${theme.colors[bgColor]};
+    background-color: ${theme.colors[bgColor] ?? theme.colors.gray};
 
     svg {
       fill: ${theme.colors.base.white};

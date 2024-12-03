@@ -14,6 +14,10 @@ export const CardContainer = styled.div`
   border-radius: 6px 36px 6px 36px;
 
   background: ${(props) => props.theme.colors.base.card};
+
+  @media screen and (max-width: 768px) {
+    width: 100%;
+  }
 `
 
 export const CardContent = styled.div`
@@ -32,6 +36,11 @@ export const CardImage = styled.div`
     width: 100%;
     top: -43px;
   }
+`
+
+export const TagGrid = styled.div`
+  display: flex;
+  gap: 0.25rem;
 `
 
 export const Tag = styled.div`
@@ -69,6 +78,10 @@ export const CardCheckout = styled.div`
   justify-content: space-between;
 
   padding: 0 0.25rem;
+
+  @media screen and (max-width: 545px) {
+    justify-content: space-around;
+  }
 `
 
 export const StateButton = styled.button`
