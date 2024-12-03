@@ -1,4 +1,3 @@
-import tradicionalCoffee from '@/assets/products/tradicional.svg'
 import { ShoppingCart } from 'phosphor-react'
 import {
   CardCheckout,
@@ -9,27 +8,39 @@ import {
   CardTitle,
   Price,
   StateButton,
+  TagGrid,
   Tag,
   CartAction,
 } from './styled'
 import { InputNumber } from '@/components/ui/input-number'
+import { Coffee } from '@/types'
 
-export function Card() {
+interface CardProps {
+  data: Coffee
+}
+
+export function Card({ data }: CardProps) {
+  const { name, description, price, types, imageUrl } = data
+
   return (
     <CardContainer>
       <CardContent>
         <CardImage>
-          <img src={tradicionalCoffee} alt="" />
+          <img src={imageUrl} alt="" />
         </CardImage>
-        <Tag>Tradicional</Tag>
-        <CardTitle>Expresso Tradicional</CardTitle>
-        <CardLabel>
-          O tradicional café feito com água quente e grãos moídos
-        </CardLabel>
+        <TagGrid>
+          {types.map((type) => (
+            <Tag key={type}>{type}</Tag>
+          ))}
+        </TagGrid>
+        <CardTitle>{name}</CardTitle>
+        <CardLabel>{description}</CardLabel>
       </CardContent>
 
       <CardCheckout>
-        <Price>9,90</Price>
+        <Price>
+          {price.toLocaleString('pt-br', { minimumFractionDigits: 2 })}
+        </Price>
         <CartAction>
           <InputNumber />
           <StateButton>
