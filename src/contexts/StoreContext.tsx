@@ -42,7 +42,7 @@ export function CoffeeStoreContextProvider({
 
   const { coffees } = storeState
 
-  useLocalStorage<{ coffees: Coffee[] }>(
+  useLocalStorage<{ coffees: GroupedCoffee[] }>(
     '@coffee-delivery:store-state-1.0.0',
     storeState,
   )
