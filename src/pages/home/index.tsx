@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react'
 import { Card } from './components/card'
 import { Hero } from './components/hero'
 import { ContentGrid } from './styles'
-import { Coffee } from '@/types'
+import { Coffee } from '@/reducers/reducer'
 
 export function Home() {
   const [coffees, setCoffees] = useState<Coffee[] | null>(null)
