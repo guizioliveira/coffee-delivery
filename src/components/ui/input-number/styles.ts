@@ -23,6 +23,11 @@ export const Input = styled.div`
 
       background: transparent;
       color: ${theme.colors.purple};
+
+      &:disabled {
+        opacity: 0.5;
+        cursor: not-allowed;
+      }
     }
   `}
 `
