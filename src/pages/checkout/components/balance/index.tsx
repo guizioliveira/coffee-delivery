@@ -1,3 +1,4 @@
+import { formatPrice } from '@/utils/formatPrice'
 import { Item, Total } from './styles'
 
 interface BalancePrpos {
@@ -6,26 +7,19 @@ interface BalancePrpos {
 }
 
 export default function Balance({ total, shipping = 0 }: BalancePrpos) {
-  const currencyFormatter = new Intl.NumberFormat('pt-BR', {
-    style: 'currency',
-    currency: 'BRL',
-  })
-
   return (
     <>
       <Item>
         <p>Total de itens</p>
-        <span>{currencyFormatter.format(total)}</span>
+        <span>{formatPrice(total)}</span>
       </Item>
       <Item value={shipping}>
         <p>Entrega</p>
-        <span>
-          {shipping !== 0 ? currencyFormatter.format(shipping) : 'Grátis'}
-        </span>
+        <span>{shipping !== 0 ? formatPrice(shipping) : 'Grátis'}</span>
       </Item>
       <Total>
         <p>Total</p>
-        <span>{currencyFormatter.format(total + shipping)}</span>
+        <span>{formatPrice(total + shipping)}</span>
       </Total>
     </>
   )

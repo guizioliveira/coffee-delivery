@@ -33,10 +33,5 @@ export const Quantity = styled.div`
 export const Price = styled.p`
   ${({ theme }) => css`
     font: ${theme.fonts.roboto.textMBold};
-
-    &::before {
-      content: 'R$';
-      margin-right: 4px;
-    }
   `}
 `
