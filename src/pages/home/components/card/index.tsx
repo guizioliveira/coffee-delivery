@@ -1,4 +1,8 @@
+import { InputNumber } from '@/components/ui/input-number'
+import { useStore } from '@/contexts/StoreContext'
+import { Coffee } from '@/reducers/reducer'
 import { ShoppingCart } from 'phosphor-react'
+import { useState } from 'react'
 import {
   CardCheckout,
   CardContainer,
@@ -6,21 +10,25 @@ import {
   CardImage,
   CardLabel,
   CardTitle,
+  CartAction,
   Price,
   StateButton,
-  TagGrid,
   Tag,
-  CartAction,
+  TagGrid,
 } from './styled'
-import { InputNumber } from '@/components/ui/input-number'
-import { Coffee } from '@/types'
-
 interface CardProps {
   data: Coffee
 }
 
 export function Card({ data }: CardProps) {
+  const [quantity, setQuantity] = useState<number>(1)
+
   const { name, description, price, types, imageUrl } = data
+  const { addNewItem } = useStore()
+
+  const handleAddToCart = () => {
+    addNewItem(data, quantity)
+  }
 
   return (
     <CardContainer>
@@ -42,9 +50,9 @@ export function Card({ data }: CardProps) {
           {price.toLocaleString('pt-br', { minimumFractionDigits: 2 })}
         </Price>
         <CartAction>
-          <InputNumber />
+          <InputNumber onChange={(newQuantity) => setQuantity(newQuantity)} />
           <StateButton>
-            <ShoppingCart size={22} weight="fill" />
+            <ShoppingCart size={22} weight="fill" onClick={handleAddToCart} />
           </StateButton>
         </CartAction>
       </CardCheckout>

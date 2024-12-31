@@ -1,28 +1,37 @@
+import { Button } from '@/components/ui/button'
 import { InputNumber } from '@/components/ui/input-number'
+import { useStore } from '@/contexts/StoreContext'
+import { GroupedCoffee } from '@/reducers/reducer'
+import { formatPrice } from '@/utils/formatPrice'
+import { Trash } from 'phosphor-react'
 import {
   Container,
-  ItemInformation,
-  Image,
   Controller,
-  Quantity,
+  Image,
+  ItemInformation,
   Price,
+  Quantity,
 } from './styled'
 
-import coffee from '@/assets/products/tradicional.svg'
-import { Button } from '@/components/ui/button'
-import { Trash } from 'phosphor-react'
+interface CartItemProps {
+  item: GroupedCoffee
+}
 
-export function CartItem() {
+export function CartItem({ item }: CartItemProps) {
+  const { removeItem } = useStore()
+
+  if (!item) return
+
   return (
     <Container>
       <ItemInformation>
-        <Image src={coffee} alt="café" />
+        <Image src={item.imageUrl} alt="café" />
 
         <Controller>
-          <text>Expresso Tradicional</text>
+          <text>{item.name}</text>
           <Quantity>
-            <InputNumber />
-            <Button variant="secondary">
+            <InputNumber readOnly initialNumber={item.quantity} />
+            <Button variant="secondary" onClick={() => removeItem(item.id)}>
               <Trash size={16} />
               Remover
             </Button>
@@ -30,7 +39,7 @@ export function CartItem() {
         </Controller>
       </ItemInformation>
 
-      <Price>9,90</Price>
+      <Price>{formatPrice(item.totalPrice)}</Price>
     </Container>
   )
 }

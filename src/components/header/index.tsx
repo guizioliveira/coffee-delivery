@@ -1,10 +1,12 @@
+import coffeeLogo from '@/assets/logo.svg'
+import { useStore } from '@/contexts/StoreContext'
+import { MapPin, ShoppingCart } from 'phosphor-react'
 import { NavLink, useNavigate } from 'react-router-dom'
 import { CartButton, HeaderContainer, LocationButton } from './styles'
-import coffeeLogo from '@/assets/logo.svg'
-import { MapPin, ShoppingCart } from 'phosphor-react'
 
 export function Header() {
   const navigate = useNavigate()
+  const { totalItems } = useStore()
 
   return (
     <HeaderContainer>
@@ -18,7 +20,7 @@ export function Header() {
           Porto Alegre, RS
         </LocationButton>
 
-        <CartButton onClick={() => navigate('/checkout')} content={0}>
+        <CartButton onClick={() => navigate('/checkout')} content={totalItems}>
           <ShoppingCart size={22} weight="fill" />
         </CartButton>
       </nav>
