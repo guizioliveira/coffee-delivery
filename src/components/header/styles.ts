@@ -72,7 +72,7 @@ export const CartButton = styled.div<CartButtonProps>`
       top: -8px;
       right: -8px;
 
-      font: ${theme.fonts.roboto.textXSBold}
+      font: ${theme.fonts.roboto.textXSBold};
 
       color: ${theme.colors.base.white};
       background: ${theme.colors['yellow-dark']};
