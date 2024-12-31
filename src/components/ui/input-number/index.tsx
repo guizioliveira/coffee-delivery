@@ -4,28 +4,38 @@ import { Minus, Plus } from 'phosphor-react'
 
 interface InputNumberProps {
   initialNumber?: number
+  onChange?: (newQuantity: number) => void
+  readyOnly?: boolean
 }
 
-export function InputNumber({ initialNumber = 1 }: InputNumberProps) {
+export function InputNumber({
+  initialNumber = 1,
+  onChange,
+  readyOnly = false,
+}: InputNumberProps) {
   const [quantity, setQuantity] = useState<number>(initialNumber)
 
   function increaseQuantity() {
-    setQuantity((prevState) => prevState + 1)
+    const newQuantity = quantity + 1
+    setQuantity(newQuantity)
+    onChange?.(newQuantity)
   }
 
   function decreaseQuantity() {
     if (quantity <= 1) return
 
-    setQuantity((prevState) => prevState - 1)
+    const newQuantity = quantity - 1
+    setQuantity(newQuantity)
+    onChange?.(newQuantity)
   }
 
   return (
     <Input>
-      <button onClick={decreaseQuantity}>
+      <button onClick={decreaseQuantity} disabled={readyOnly}>
         <Minus size={14} weight="bold" />
       </button>
       {quantity}
-      <button onClick={increaseQuantity}>
+      <button onClick={increaseQuantity} disabled={readyOnly}>
         <Plus size={14} weight="bold" />
       </button>
     </Input>
