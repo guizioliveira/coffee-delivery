@@ -9,9 +9,11 @@ import Balance from './components/balance'
 import { CartItem } from './components/cart-item'
 import { Container, GridThreeColumns, GridTwoColumns, Section } from './styles'
 import EmptyCart from './components/empty-cart'
+import { useLocation } from '@/hooks/useLocation'
 
 export function Checkout() {
   const { groupedCoffees, totalPrice } = useStore()
+  const { location } = useLocation()
 
   return (
     <main>
@@ -42,8 +44,8 @@ export function Checkout() {
 
                   <GridThreeColumns>
                     <Input placeholder="Bairro" />
-                    <Input placeholder="Cidade" />
-                    <Input placeholder="UF" />
+                    <Input placeholder="Cidade" value={location?.city} />
+                    <Input placeholder="UF" value={location?.state} />
                   </GridThreeColumns>
                 </Box.content>
               </Box.root>
