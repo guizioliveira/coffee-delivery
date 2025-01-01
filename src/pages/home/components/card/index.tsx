@@ -1,4 +1,4 @@
-import { InputNumber } from '@/components/ui/input-number'
+import { InputNumber } from '@/components/ui'
 import { useStore } from '@/contexts/StoreContext'
 import { Coffee } from '@/reducers/reducer'
 import { ShoppingCart } from 'phosphor-react'
