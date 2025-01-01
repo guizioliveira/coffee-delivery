@@ -1,11 +1,10 @@
 import { createServer, Model } from 'miragejs'
 import { coffeeData } from '../mock/coffeeData'
-import { Coffee } from '@/types'
 
 export function makeServer() {
   return createServer({
     models: {
-      coffee: Model.extend<Partial<Coffee>>({}),
+      coffee: Model.extend({}),
     },
 
     seeds(server) {
