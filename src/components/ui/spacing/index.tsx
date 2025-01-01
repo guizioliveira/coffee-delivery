@@ -4,6 +4,6 @@ interface SpacingProps {
   apparence: Size
 }
 
-export default function Spacing({ apparence }: SpacingProps) {
+export function Spacing({ apparence }: SpacingProps) {
   return <SpacingComponent size={apparence} />
 }

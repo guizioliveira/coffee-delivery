@@ -1,5 +1,4 @@
-import { Button } from '@/components/ui/button'
-import { InputNumber } from '@/components/ui/input-number'
+import { Button, InputNumber } from '@/components/ui'
 import { useStore } from '@/contexts/StoreContext'
 import { GroupedCoffee } from '@/reducers/reducer'
 import { formatPrice } from '@/utils/formatPrice'

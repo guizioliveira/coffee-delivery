@@ -1,8 +1,4 @@
-import * as Box from '@/components/ui/box'
-import { Button } from '@/components/ui/button'
-import { Input } from '@/components/ui/input'
-import { Separator } from '@/components/ui/separator'
-import Spacing from '@/components/ui/spacing'
+import { Box, Button, Input, Separator, Spacing } from '@/components/ui'
 import { useStore } from '@/contexts/StoreContext'
 import { useLocation } from '@/hooks/useLocation'
 import { CurrencyDollar, MapPinLine } from 'phosphor-react'
@@ -10,6 +6,7 @@ import { Fragment } from 'react'
 import Balance from './components/balance'
 import { CartItem } from './components/cart-item'
 import EmptyCart from './components/empty-cart'
+
 import { Container, GridThreeColumns, GridTwoColumns, Section } from './styles'
 
 export function Checkout() {
