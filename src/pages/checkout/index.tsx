@@ -4,12 +4,13 @@ import { Input } from '@/components/ui/input'
 import { Separator } from '@/components/ui/separator'
 import Spacing from '@/components/ui/spacing'
 import { useStore } from '@/contexts/StoreContext'
+import { useLocation } from '@/hooks/useLocation'
 import { CurrencyDollar, MapPinLine } from 'phosphor-react'
+import { Fragment } from 'react'
 import Balance from './components/balance'
 import { CartItem } from './components/cart-item'
-import { Container, GridThreeColumns, GridTwoColumns, Section } from './styles'
 import EmptyCart from './components/empty-cart'
-import { useLocation } from '@/hooks/useLocation'
+import { Container, GridThreeColumns, GridTwoColumns, Section } from './styles'
 
 export function Checkout() {
   const { groupedCoffees, totalPrice } = useStore()
@@ -65,10 +66,10 @@ export function Checkout() {
               <Box.root>
                 <Box.content orientation="column">
                   {groupedCoffees.map((coffee) => (
-                    <>
-                      <CartItem key={coffee.id} item={coffee} />
+                    <Fragment key={coffee.id}>
+                      <CartItem item={coffee} />
                       <Separator />
-                    </>
+                    </Fragment>
                   ))}
                   <Balance total={totalPrice} shipping={5.9} />
                 </Box.content>

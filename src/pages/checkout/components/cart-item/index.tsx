@@ -28,7 +28,7 @@ export function CartItem({ item }: CartItemProps) {
         <Image src={item.imageUrl} alt="café" />
 
         <Controller>
-          <text>{item.name}</text>
+          {item.name}
           <Quantity>
             <InputNumber readOnly initialNumber={item.quantity} />
             <Button variant="secondary" onClick={() => removeItem(item.id)}>
