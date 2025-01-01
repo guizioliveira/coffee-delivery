@@ -14,6 +14,7 @@ export function makeServer() {
     },
 
     routes() {
+      this.passthrough('https://ipapi.co/**')
       this.namespace = 'api'
 
       this.get('/coffees', (schema) => {

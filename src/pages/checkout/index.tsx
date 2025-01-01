@@ -30,7 +30,7 @@ export function Checkout() {
 
                 <Box.content orientation="column">
                   <GridThreeColumns>
-                    <Input placeholder="CPF" />
+                    <Input placeholder="CEP" />
                   </GridThreeColumns>
 
                   <Input placeholder="Endereço" />
