@@ -1,4 +1,4 @@
-import { Coffee } from '@/types'
+import { Coffee } from '@/reducers/reducer'
 
 export const coffeeData: Coffee[] = [
   {
