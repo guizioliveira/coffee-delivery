@@ -1,17 +1,16 @@
-import { Box, Button, Input, Separator, Spacing } from '@/components/ui'
+import { Box, Button, Separator, Spacing } from '@/components/ui'
 import { useStore } from '@/contexts/StoreContext'
-import { useLocation } from '@/hooks/useLocation'
 import { CurrencyDollar, MapPinLine } from 'phosphor-react'
 import { Fragment } from 'react'
 import Balance from './components/balance'
 import { CartItem } from './components/cart-item'
 import EmptyCart from './components/empty-cart'
 
-import { Container, GridThreeColumns, GridTwoColumns, Section } from './styles'
+import { Container, Section } from './styles'
+import { AddressForm } from './components/forms/address-form'
 
 export function Checkout() {
   const { groupedCoffees, totalPrice } = useStore()
-  const { location } = useLocation()
 
   return (
     <main>
@@ -29,22 +28,7 @@ export function Checkout() {
                 <Spacing apparence="xl" />
 
                 <Box.content orientation="column">
-                  <GridThreeColumns>
-                    <Input placeholder="CEP" />
-                  </GridThreeColumns>
-
-                  <Input placeholder="Endereço" />
-
-                  <GridTwoColumns>
-                    <Input placeholder="Número" />
-                    <Input placeholder="Complemento (Opcional)" />
-                  </GridTwoColumns>
-
-                  <GridThreeColumns>
-                    <Input placeholder="Bairro" />
-                    <Input placeholder="Cidade" value={location?.city} />
-                    <Input placeholder="UF" value={location?.state} />
-                  </GridThreeColumns>
+                  <AddressForm />
                 </Box.content>
               </Box.root>
 
