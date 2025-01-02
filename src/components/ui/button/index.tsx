@@ -8,10 +8,11 @@ interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
 export function Button({
   variant = 'primary',
   children,
+  type = 'button',
   ...rest
 }: ButtonProps) {
   return (
-    <StyledButton variant={variant} {...rest}>
+    <StyledButton variant={variant} type={type} {...rest}>
       {children}
     </StyledButton>
   )
