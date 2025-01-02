@@ -18,7 +18,7 @@ interface BoxProps {
 function Box(props: BoxProps) {
   return (
     <BoxComponent>
-      <BoxContent gap={12}>
+      <BoxContent>
         {props.icon && (
           <Icon color={props.icon.color!}>{props.icon.element}</Icon>
         )}

@@ -8,11 +8,10 @@ export const Box = styled.div`
 
 export const BoxContent = styled.div<{
   orientation?: 'column' | 'row'
-  gap?: number
 }>`
   display: flex;
   flex-direction: ${(props) => props.orientation || 'row'};
-  gap: ${(props) => (props.gap ? `${props.gap}px` : '1rem')};
+  gap: 0.75rem;
 `
 
 export const Title = styled.p`
