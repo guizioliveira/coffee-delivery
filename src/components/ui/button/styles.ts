@@ -1,3 +1,4 @@
+import isPropValid from '@emotion/is-prop-valid'
 import styled, { css } from 'styled-components'
 
 interface ButtonProps {
@@ -27,7 +28,9 @@ const variantStyles = {
   `,
 }
 
-export const Button = styled.button<ButtonProps>`
+export const Button = styled('button').withConfig({
+  shouldForwardProp: (prop) => isPropValid(prop) && prop !== 'variant',
+})<ButtonProps>`
   display: flex;
   align-items: center;
   justify-content: center;
