@@ -10,6 +10,16 @@ export const Container = styled.div`
   }
 `
 
+export const Form = styled.form`
+  display: flex;
+  gap: 2rem;
+  width: 100%;
+
+  @media screen and (max-width: 993px) {
+    flex-direction: column;
+  }
+`
+
 interface SectionProps {
   size: number
 }

@@ -1,45 +1,64 @@
 import { Box, Button, Separator, Spacing } from '@/components/ui'
 import { useStore } from '@/contexts/StoreContext'
-import { CurrencyDollar, MapPinLine } from 'phosphor-react'
+import { zodResolver } from '@hookform/resolvers/zod'
 import { Fragment } from 'react'
+import { FormProvider, useForm } from 'react-hook-form'
+import * as zod from 'zod'
 import Balance from './components/balance'
 import { CartItem } from './components/cart-item'
 import EmptyCart from './components/empty-cart'
-
-import { Container, Section } from './styles'
 import { AddressForm } from './components/forms/address-form'
+import { Container, Form as FormContainer, Section } from './styles'
+import { PaymentMethodForm } from './components/forms/payment-method-form'
+
+const paymentRequestSchema = zod.object({
+  cep: zod.string().regex(/^\d{5}-\d{3}$/, 'CEP inválido'),
+  address: zod.string().min(1, 'Campo inválido'),
+  number: zod.coerce.number().min(1, 'Campo inválido'),
+  complement: zod.string().optional(),
+  district: zod.string().min(1, 'Campo inválido'),
+  city: zod.string().min(1, 'Campo inválido'),
+  regionCode: zod
+    .string()
+    .length(2, 'Campo inválido')
+    .regex(/^[A-Za-z]{2}$/, 'Somente letras. Ex.: RS, SC, SP'),
+})
+
+type PaymentRequestFormData = zod.infer<typeof paymentRequestSchema>
 
 export function Checkout() {
   const { groupedCoffees, totalPrice } = useStore()
+
+  const paymentRequestForm = useForm<PaymentRequestFormData>({
+    resolver: zodResolver(paymentRequestSchema),
+    defaultValues: {
+      cep: '',
+      address: '',
+      complement: '',
+      district: '',
+      city: '',
+      regionCode: '',
+    },
+  })
+
+  const { handleSubmit } = paymentRequestForm
+
+  function handleCreateNewPaymentRequest(data: PaymentRequestFormData) {
+    console.log(data, totalPrice)
+  }
 
   return (
     <main>
       <Container>
         {groupedCoffees.length > 0 ? (
-          <>
+          <FormContainer onSubmit={handleSubmit(handleCreateNewPaymentRequest)}>
             <Section size={640}>
               <h5>Complete seu pedido</h5>
 
-              <Box.root
-                title="Endereço de entrega"
-                description="Informe o endereço onde deseja receber seu pedido"
-                icon={{ color: 'yellow-dark', element: <MapPinLine /> }}
-              >
-                <Spacing apparence="xl" />
-
-                <Box.content orientation="column">
-                  <AddressForm />
-                </Box.content>
-              </Box.root>
-
-              <Box.root
-                title="Pagamento"
-                description="O pagamento é feito na entrega. Escolha a forma que deseja pagar"
-                icon={{ color: 'purple', element: <CurrencyDollar /> }}
-              >
-                <Spacing apparence="xl" />
-                <p>text</p>
-              </Box.root>
+              <FormProvider {...paymentRequestForm}>
+                <AddressForm />
+                <PaymentMethodForm />
+              </FormProvider>
             </Section>
 
             <Section size={448}>
@@ -58,11 +77,11 @@ export function Checkout() {
                 <Spacing apparence="l" />
 
                 <Box.content>
-                  <Button>confirmar pedido</Button>
+                  <Button type="submit">confirmar pedido</Button>
                 </Box.content>
               </Box.root>
             </Section>
-          </>
+          </FormContainer>
         ) : (
           <EmptyCart />
         )}
