@@ -1,5 +1,5 @@
 import { produce } from 'immer'
-import { ActionTypes } from './actions'
+import { ActionTypes, CoffeeActions } from './actions'
 
 export type Coffee = {
   id: string
@@ -12,13 +12,17 @@ export type Coffee = {
 
 export type GroupedCoffee = Coffee & {
   quantity: number
-  totalPrice: number
+  totalItemPrice: number
+}
+
+function calculateTotalPrice(quantity: number, price: number): number {
+  return parseFloat((quantity * price).toFixed(2))
 }
 
 export function coffeeReducer(
   state: { coffees: GroupedCoffee[] },
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  action: { type: string; payload: any },
+  action: CoffeeActions,
 ) {
   switch (action.type) {
     case ActionTypes.ADD_NEW_COFFEE:
@@ -29,13 +33,18 @@ export function coffeeReducer(
 
         if (existingItem) {
           existingItem.quantity += action.payload.quantity
-          existingItem.totalPrice = existingItem.quantity * existingItem.price
+          existingItem.totalItemPrice = calculateTotalPrice(
+            existingItem.quantity,
+            existingItem.price,
+          )
         } else {
           draft.coffees.push({
             ...action.payload.newCoffee,
             quantity: action.payload.quantity,
-            totalPrice:
-              action.payload.newCoffee.price * action.payload.quantity,
+            totalItemPrice: calculateTotalPrice(
+              action.payload.quantity,
+              action.payload.newCoffee.price,
+            ),
           })
         }
       })
