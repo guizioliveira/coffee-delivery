@@ -6,12 +6,12 @@ export function groupCoffeeById(items: GroupedCoffee[]): GroupedCoffee[] {
 
     if (existingItem) {
       existingItem.quantity += coffee.quantity
-      existingItem.totalPrice += coffee.totalPrice
+      existingItem.totalItemPrice += coffee.totalItemPrice
     } else {
       acc.push({
         ...coffee,
         quantity: coffee.quantity,
-        totalPrice: coffee.totalPrice,
+        totalItemPrice: coffee.totalItemPrice,
       })
     }
 

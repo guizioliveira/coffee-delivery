@@ -38,7 +38,7 @@ export function CartItem({ item }: CartItemProps) {
         </Controller>
       </ItemInformation>
 
-      <Price>{formatPrice(item.totalPrice)}</Price>
+      <Price>{formatPrice(item.totalItemPrice)}</Price>
     </Container>
   )
 }
