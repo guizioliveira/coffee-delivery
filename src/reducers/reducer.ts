@@ -20,8 +20,7 @@ function calculateTotalPrice(quantity: number, price: number): number {
 }
 
 export function coffeeReducer(
-  state: { coffees: GroupedCoffee[] },
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  state: { coffees: GroupedCoffee[]; shippingFee: number },
   action: CoffeeActions,
 ) {
   switch (action.type) {
@@ -48,12 +47,19 @@ export function coffeeReducer(
           })
         }
       })
+
     case ActionTypes.REMOVE_COFFEE:
       return produce(state, (draft) => {
         draft.coffees = draft.coffees.filter(
           (coffee) => coffee.id !== action.payload.coffeeId,
         )
       })
+
+    case ActionTypes.SET_SHIPPING_FEE:
+      return produce(state, (draft) => {
+        draft.shippingFee = action.payload.shippingFee
+      })
+
     default:
       return state
   }

@@ -1,16 +1,23 @@
 import { createContext, ReactNode, useContext, useReducer } from 'react'
 import { Coffee, coffeeReducer, GroupedCoffee } from '@/reducers/reducer'
-import { addNewCoffeeAction, removeCoffee } from '@/reducers/actions'
+import {
+  addNewCoffeeAction,
+  removeCoffee,
+  setShippingFeeAction,
+} from '@/reducers/actions'
 import { useLocalStorage } from '@/hooks/useLocalStorage'
 import { groupCoffeeById } from '@/utils/groupByItem'
+import { DEFAULT_SHIPPING_FEE } from '@/constants'
 
 interface CoffeeStoreContextType {
   coffees: Coffee[]
   groupedCoffees: GroupedCoffee[]
   totalItems: number
   purchasePrice: number
+  shippingFee: number
   addNewItem: (data: Coffee, quantity: number) => void
   removeItem: (coffeeId: string) => void
+  setShippingFee: (fee: number) => void
 }
 
 interface CoffeeStoreContextProviderProps {
@@ -26,6 +33,7 @@ export function CoffeeStoreContextProvider({
     coffeeReducer,
     {
       coffees: [],
+      shippingFee: DEFAULT_SHIPPING_FEE,
     },
     (initialState) => {
       const storedStateAsJSON = localStorage.getItem(
@@ -40,7 +48,7 @@ export function CoffeeStoreContextProvider({
     },
   )
 
-  const { coffees } = storeState
+  const { coffees, shippingFee } = storeState
 
   useLocalStorage<{ coffees: GroupedCoffee[] }>(
     '@coffee-delivery:store-state-1.0.0',
@@ -53,6 +61,10 @@ export function CoffeeStoreContextProvider({
 
   function removeItem(id: string) {
     dispatch(removeCoffee(id))
+  }
+
+  function setShippingFee(fee: number) {
+    dispatch(setShippingFeeAction(fee))
   }
 
   const groupedCoffees = groupCoffeeById(coffees)
@@ -69,8 +81,10 @@ export function CoffeeStoreContextProvider({
         groupedCoffees,
         totalItems,
         purchasePrice,
+        shippingFee,
         addNewItem,
         removeItem,
+        setShippingFee,
       }}
     >
       {children}
