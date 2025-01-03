@@ -2,12 +2,15 @@ import { Box, Input, Spacing } from '@/components/ui'
 import { GridThreeColumns, GridTwoColumns } from './styles'
 import { useLocation } from '@/hooks/useLocation'
 import { MapPinLine } from 'phosphor-react'
-import { useFormContext, Controller } from 'react-hook-form'
+import { useFormContext, Controller, useWatch } from 'react-hook-form'
 import { useEffect } from 'react'
 import { MaskedInput } from '@/components/ui/mask-input'
+import { useStore } from '@/contexts/StoreContext'
+import { calculateShippingFee } from '@/utils/shippingCalculator'
 
 export function AddressForm() {
   const { location } = useLocation()
+  const { setShippingFee } = useStore()
 
   const {
     register,
@@ -16,12 +19,27 @@ export function AddressForm() {
     control,
   } = useFormContext()
 
+  const city = useWatch({
+    control,
+    name: 'city',
+  })
+
+  const regionCode = useWatch({
+    control,
+    name: 'regionCode',
+  })
+
   useEffect(() => {
     if (location) {
       setValue('city', location.city)
       setValue('regionCode', location.state)
     }
   }, [location, setValue])
+
+  useEffect(() => {
+    const fee = calculateShippingFee(city, regionCode)
+    setShippingFee(fee)
+  }, [city, regionCode, setShippingFee])
 
   return (
     <Box.root
