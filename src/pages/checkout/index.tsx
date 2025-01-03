@@ -22,12 +22,15 @@ const paymentRequestSchema = zod.object({
     .string()
     .length(2, 'Campo inválido')
     .regex(/^[A-Za-z]{2}$/, 'Somente letras. Ex.: RS, SC, SP'),
+  paymentMethod: zod.enum(['credit', 'debit', 'cash'], {
+    invalid_type_error: 'Escolha uma forma de pagamento',
+  }),
 })
 
 type PaymentRequestFormData = zod.infer<typeof paymentRequestSchema>
 
 export function Checkout() {
-  const { groupedCoffees, totalPrice } = useStore()
+  const { groupedCoffees, totalItemPrice } = useStore()
 
   const paymentRequestForm = useForm<PaymentRequestFormData>({
     resolver: zodResolver(paymentRequestSchema),
@@ -44,7 +47,7 @@ export function Checkout() {
   const { handleSubmit } = paymentRequestForm
 
   function handleCreateNewPaymentRequest(data: PaymentRequestFormData) {
-    console.log(data, totalPrice)
+    console.log(data, totalItemPrice)
   }
 
   return (
@@ -71,7 +74,7 @@ export function Checkout() {
                       <Separator />
                     </Fragment>
                   ))}
-                  <Balance total={totalPrice} shipping={5.9} />
+                  <Balance total={totalItemPrice} shipping={5.9} />
                 </Box.content>
 
                 <Spacing apparence="l" />

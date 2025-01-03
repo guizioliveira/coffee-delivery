@@ -1,9 +1,13 @@
-import { Box, Spacing } from '@/components/ui'
-import { CurrencyDollar } from 'phosphor-react'
+import { Box, Spacing, RadioButton, RadioGroup } from '@/components/ui'
+import { Bank, CreditCard, CurrencyDollar, Money } from 'phosphor-react'
 import { useFormContext } from 'react-hook-form'
+import { ErrorMessage } from './styles'
 
 export function PaymentMethodForm() {
-  const { register } = useFormContext()
+  const {
+    register,
+    formState: { errors },
+  } = useFormContext()
 
   return (
     <Box.root
@@ -12,18 +16,30 @@ export function PaymentMethodForm() {
       icon={{ color: 'purple', element: <CurrencyDollar /> }}
     >
       <Spacing apparence="xl" />
-      <label>
-        <input type="radio" value="credit" {...register('paymentMethod')} />
-        Cartão de Crédito
-      </label>
-      <label>
-        <input type="radio" value="debit" {...register('paymentMethod')} />
-        Cartão de Débito
-      </label>
-      <label>
-        <input type="radio" value="cash" {...register('paymentMethod')} />
-        Dinheiro
-      </label>
+
+      <RadioGroup>
+        <RadioButton value="credit" {...register('paymentMethod')}>
+          <CreditCard size={16} />
+          Cartão de Crédito
+        </RadioButton>
+        <RadioButton value="debit" {...register('paymentMethod')}>
+          <Bank size={16} />
+          Cartão de Débito
+        </RadioButton>
+        <RadioButton value="cash" {...register('paymentMethod')}>
+          <Money size={16} />
+          Dinheiro
+        </RadioButton>
+      </RadioGroup>
+
+      {errors.paymentMethod && (
+        <>
+          <Spacing apparence="s" />
+          <ErrorMessage>
+            {errors.paymentMethod.message as string | undefined}
+          </ErrorMessage>
+        </>
+      )}
     </Box.root>
   )
 }
