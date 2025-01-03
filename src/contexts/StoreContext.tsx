@@ -8,7 +8,7 @@ interface CoffeeStoreContextType {
   coffees: Coffee[]
   groupedCoffees: GroupedCoffee[]
   totalItems: number
-  totalItemPrice: number
+  purchasePrice: number
   addNewItem: (data: Coffee, quantity: number) => void
   removeItem: (coffeeId: string) => void
 }
@@ -56,7 +56,7 @@ export function CoffeeStoreContextProvider({
   }
 
   const groupedCoffees = groupCoffeeById(coffees)
-  const totalItemPrice = coffees.reduce(
+  const purchasePrice = coffees.reduce(
     (acc, coffee) => acc + coffee.totalItemPrice,
     0,
   )
@@ -68,7 +68,7 @@ export function CoffeeStoreContextProvider({
         coffees,
         groupedCoffees,
         totalItems,
-        totalItemPrice,
+        purchasePrice,
         addNewItem,
         removeItem,
       }}

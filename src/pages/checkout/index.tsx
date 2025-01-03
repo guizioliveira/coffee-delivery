@@ -30,7 +30,7 @@ const paymentRequestSchema = zod.object({
 type PaymentRequestFormData = zod.infer<typeof paymentRequestSchema>
 
 export function Checkout() {
-  const { groupedCoffees, totalItemPrice } = useStore()
+  const { groupedCoffees, purchasePrice } = useStore()
 
   const paymentRequestForm = useForm<PaymentRequestFormData>({
     resolver: zodResolver(paymentRequestSchema),
@@ -47,7 +47,7 @@ export function Checkout() {
   const { handleSubmit } = paymentRequestForm
 
   function handleCreateNewPaymentRequest(data: PaymentRequestFormData) {
-    console.log(data, totalItemPrice)
+    console.log(data, purchasePrice)
   }
 
   return (
@@ -74,7 +74,7 @@ export function Checkout() {
                       <Separator />
                     </Fragment>
                   ))}
-                  <Balance total={totalItemPrice} shipping={5.9} />
+                  <Balance total={purchasePrice} shipping={5.9} />
                 </Box.content>
 
                 <Spacing apparence="l" />
