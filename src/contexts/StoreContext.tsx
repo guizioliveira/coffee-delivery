@@ -4,6 +4,7 @@ import {
   addNewCoffeeAction,
   removeCoffee,
   setShippingFeeAction,
+  cleanCart,
 } from '@/reducers/actions'
 import { useLocalStorage } from '@/hooks/useLocalStorage'
 import { groupCoffeeById } from '@/utils/groupByItem'
@@ -19,6 +20,7 @@ interface CoffeeStoreContextType {
   addNewItem: (data: Coffee, quantity: number) => void
   removeItem: (coffeeId: string) => void
   setShippingFee: (fee: number) => void
+  removeAll: () => void
 }
 
 interface CoffeeStoreContextProviderProps {
@@ -71,6 +73,10 @@ export function CoffeeStoreContextProvider({
     dispatch(setShippingFeeAction(fee))
   }
 
+  function removeAll() {
+    dispatch(cleanCart())
+  }
+
   const groupedCoffees = groupCoffeeById(coffees)
   const purchasePrice = coffees.reduce(
     (acc, coffee) => acc + coffee.totalItemPrice,
@@ -89,6 +95,7 @@ export function CoffeeStoreContextProvider({
         addNewItem,
         removeItem,
         setShippingFee,
+        removeAll,
       }}
     >
       {children}

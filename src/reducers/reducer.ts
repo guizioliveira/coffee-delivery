@@ -55,6 +55,11 @@ export function coffeeReducer(
         )
       })
 
+    case ActionTypes.CLEAR_CART:
+      return produce(state, (draft) => {
+        draft.coffees = []
+      })
+
     case ActionTypes.SET_SHIPPING_FEE:
       return produce(state, (draft) => {
         draft.shippingFee = action.payload.shippingFee

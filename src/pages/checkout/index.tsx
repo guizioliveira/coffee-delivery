@@ -11,7 +11,7 @@ import { toast } from 'react-toastify'
 import { useNavigate } from 'react-router-dom'
 
 export function Checkout() {
-  const { groupedCoffees, purchasePrice, shippingFee } = useStore()
+  const { groupedCoffees, purchasePrice, shippingFee, removeAll } = useStore()
   const navigate = useNavigate()
 
   const paymentRequestForm = useForm<validators.formData>({
@@ -44,6 +44,7 @@ export function Checkout() {
         isLoading: false,
         autoClose: 3000,
       })
+      removeAll()
       navigate('/confirmation', { state: payload })
     }, 3000)
   }
