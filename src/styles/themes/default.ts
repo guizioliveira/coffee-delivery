@@ -49,4 +49,12 @@ export const defaultTheme = {
       buttonM: "400 12px/160% 'Roboto', sans-serif",
     },
   },
+
+  screen: {
+    s: '576px',
+    m: '768px',
+    l: '992px',
+    xl: '1200px',
+    '2xl': '1400px',
+  },
 }
