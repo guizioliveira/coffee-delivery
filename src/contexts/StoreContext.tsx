@@ -8,6 +8,7 @@ import {
 import { useLocalStorage } from '@/hooks/useLocalStorage'
 import { groupCoffeeById } from '@/utils/groupByItem'
 import { DEFAULT_SHIPPING_FEE } from '@/constants'
+import { toast } from 'react-toastify'
 
 interface CoffeeStoreContextType {
   coffees: Coffee[]
@@ -57,6 +58,9 @@ export function CoffeeStoreContextProvider({
 
   function addNewItem(data: Coffee, quantity: number) {
     dispatch(addNewCoffeeAction(data, quantity))
+    toast.success(
+      `${data.name} (${quantity} uni.) ${quantity > 1 ? 'adicionados' : 'adicionado'} a sua lista!`,
+    )
   }
 
   function removeItem(id: string) {
