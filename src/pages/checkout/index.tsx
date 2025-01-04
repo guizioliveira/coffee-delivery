@@ -1,42 +1,21 @@
 import { Box, Button, Separator, Spacing } from '@/components/ui'
 import { useStore } from '@/contexts/StoreContext'
-import { zodResolver } from '@hookform/resolvers/zod'
 import { Fragment } from 'react'
 import { FormProvider, useForm } from 'react-hook-form'
-import * as zod from 'zod'
 import Balance from './components/balance'
 import { CartItem } from './components/cart-item'
 import EmptyCart from './components/empty-cart'
-import { AddressForm } from './components/forms/address-form'
+import { AddressForm, PaymentMethodForm, validators } from './components/forms'
 import { Container, Form as FormContainer, Section } from './styles'
-import { PaymentMethodForm } from './components/forms/payment-method-form'
 import { toast } from 'react-toastify'
 import { useNavigate } from 'react-router-dom'
-
-const paymentRequestSchema = zod.object({
-  cep: zod.string().regex(/^\d{5}-\d{3}$/, 'CEP inválido'),
-  address: zod.string().min(1, 'Campo inválido'),
-  number: zod.coerce.number().min(1, 'Campo inválido'),
-  complement: zod.string().optional(),
-  district: zod.string().min(1, 'Campo inválido'),
-  city: zod.string().min(1, 'Campo inválido'),
-  regionCode: zod
-    .string()
-    .length(2, 'Campo inválido')
-    .regex(/^[A-Za-z]{2}$/, 'Somente letras. Ex.: RS, SC, SP'),
-  paymentMethod: zod.enum(['credit', 'debit', 'cash'], {
-    invalid_type_error: 'Escolha uma forma de pagamento',
-  }),
-})
-
-export type PaymentRequestFormData = zod.infer<typeof paymentRequestSchema>
 
 export function Checkout() {
   const { groupedCoffees, purchasePrice, shippingFee } = useStore()
   const navigate = useNavigate()
 
-  const paymentRequestForm = useForm<PaymentRequestFormData>({
-    resolver: zodResolver(paymentRequestSchema),
+  const paymentRequestForm = useForm<validators.formData>({
+    resolver: validators.resolver,
     defaultValues: {
       cep: '',
       address: '',
@@ -49,7 +28,7 @@ export function Checkout() {
 
   const { handleSubmit } = paymentRequestForm
 
-  function handleCreateNewPaymentRequest(data: PaymentRequestFormData) {
+  function handleCreateNewPaymentRequest(data: validators.formData) {
     const payload = {
       ...data,
       purchasePrice,
