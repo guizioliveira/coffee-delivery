@@ -10,6 +10,8 @@ import EmptyCart from './components/empty-cart'
 import { AddressForm } from './components/forms/address-form'
 import { Container, Form as FormContainer, Section } from './styles'
 import { PaymentMethodForm } from './components/forms/payment-method-form'
+import { toast } from 'react-toastify'
+import { useNavigate } from 'react-router-dom'
 
 const paymentRequestSchema = zod.object({
   cep: zod.string().regex(/^\d{5}-\d{3}$/, 'CEP inválido'),
@@ -27,10 +29,11 @@ const paymentRequestSchema = zod.object({
   }),
 })
 
-type PaymentRequestFormData = zod.infer<typeof paymentRequestSchema>
+export type PaymentRequestFormData = zod.infer<typeof paymentRequestSchema>
 
 export function Checkout() {
   const { groupedCoffees, purchasePrice, shippingFee } = useStore()
+  const navigate = useNavigate()
 
   const paymentRequestForm = useForm<PaymentRequestFormData>({
     resolver: zodResolver(paymentRequestSchema),
@@ -53,7 +56,17 @@ export function Checkout() {
       shippingFee,
     }
 
-    console.log(payload)
+    const toastId = toast.loading('Seus dados estão sendo processados...')
+
+    setTimeout(() => {
+      toast.update(toastId, {
+        render: 'Compra finalizada!',
+        type: 'success',
+        isLoading: false,
+        autoClose: 3000,
+      })
+      navigate('/confirmation', { state: payload })
+    }, 3000)
   }
 
   return (
