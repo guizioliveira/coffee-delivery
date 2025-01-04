@@ -10,7 +10,7 @@ export function DefaultLayout() {
         <Header />
         <Outlet />
         <ToastContainer
-          position="top-right"
+          position="bottom-right"
           autoClose={5000}
           newestOnTop={true}
           pauseOnHover
