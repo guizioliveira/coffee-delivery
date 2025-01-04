@@ -8,8 +8,50 @@ import {
   SuccessMessage,
 } from './styles'
 import { Spacing } from '@/components/ui'
+import { useLocation, useNavigate } from 'react-router-dom'
+import { validators } from '../checkout/components/forms'
+import { useEffect } from 'react'
+import { FREE_SHIPPING_CITY, FREE_SHIPPING_STATE } from '@/constants'
+
+type ConfirmationData = validators.formData
 
 export default function Confirmation() {
+  const location = useLocation()
+  const navigate = useNavigate()
+  const data = location.state as ConfirmationData | undefined
+
+  const formatPaymentMethod = (
+    method: 'credit' | 'debit' | 'cash' | undefined,
+  ) => {
+    switch (method) {
+      case 'credit':
+        return 'Cartão de Crédito'
+      case 'debit':
+        return 'Cartão de Débito'
+      case 'cash':
+        return 'Dinheiro'
+      default:
+        return ''
+    }
+  }
+
+  const deliveryTime = () => {
+    if (
+      data?.city === FREE_SHIPPING_CITY &&
+      data.regionCode === FREE_SHIPPING_STATE
+    ) {
+      return '20 min - 30 min'
+    } else {
+      return '60min - 80min'
+    }
+  }
+
+  useEffect(() => {
+    if (!data) {
+      navigate('/', { replace: true })
+    }
+  }, [data, navigate])
+
   return (
     <ConfirmationContaier>
       <SuccessMessage>
@@ -25,8 +67,11 @@ export default function Confirmation() {
               <MapPin size={16} weight="fill" />
             </Icon>
             <p>
-              Entrega em <b>Rua João Daniel Martinelli, 102</b> <br /> Farrapos
-              - Porto Alegre, RS
+              Entrega em{' '}
+              <b>
+                {data?.address}, {data?.number} {data?.complement}
+              </b>{' '}
+              <br /> {data?.district} - {data?.city}, {data?.regionCode}
             </p>
           </Item>
 
@@ -36,7 +81,7 @@ export default function Confirmation() {
             </Icon>
             <p>
               Previsão de entrega <br />
-              <b>20 min - 30 min</b>
+              <b>{deliveryTime()}</b>
             </p>
           </Item>
 
@@ -46,7 +91,7 @@ export default function Confirmation() {
             </Icon>
             <p>
               Pagamento na entrega <br />
-              <b>Cartão de Crédito</b>
+              <b>{formatPaymentMethod(data?.paymentMethod)}</b>
             </p>
           </Item>
         </PurchaseResume>
