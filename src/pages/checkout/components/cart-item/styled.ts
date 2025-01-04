@@ -1,4 +1,4 @@
-import styled, { css } from 'styled-components'
+import styled from 'styled-components'
 
 export const Container = styled.div`
   display: flex;
@@ -31,7 +31,5 @@ export const Quantity = styled.div`
 `
 
 export const Price = styled.p`
-  ${({ theme }) => css`
-    font: ${theme.fonts.roboto.textMBold};
-  `}
+  font: ${({ theme }) => theme.fonts.roboto.textMBold};
 `

@@ -13,9 +13,9 @@ export const CardContainer = styled.div`
 
   border-radius: 6px 36px 6px 36px;
 
-  background: ${(props) => props.theme.colors.base.card};
+  background: ${({ theme }) => theme.colors.base.card};
 
-  @media screen and (max-width: 768px) {
+  @media screen and (max-width: ${({ theme }) => theme.screen.m}) {
     width: 100%;
   }
 `
@@ -60,7 +60,7 @@ export const CardTitle = styled.h4`
   margin-top: 1rem;
   margin-bottom: 0.5rem;
 
-  color: ${(props) => props.theme.colors.base.subtitle};
+  color: ${({ theme }) => theme.colors.base.subtitle};
 `
 
 export const CardLabel = styled.span`
@@ -79,7 +79,7 @@ export const CardCheckout = styled.div`
 
   padding: 0 0.25rem;
 
-  @media screen and (max-width: 545px) {
+  @media screen and (max-width: ${({ theme }) => theme.screen.s}) {
     justify-content: space-around;
   }
 `

@@ -7,23 +7,25 @@ export const Item = styled.div<{ value?: number }>`
   justify-content: space-between;
 
   p {
-    font: ${(props) => props.theme.fonts.roboto.textSRegular};
+    font: ${({ theme }) => theme.fonts.roboto.textSRegular};
   }
 
   span {
-    ${({ value }) =>
+    ${({ value, theme }) =>
       value === 0 &&
       css`
-        color: ${(props) => props.theme.colors.purple};
+        color: ${theme.colors.purple};
         font-weight: bold;
       `}
   }
 `
 
 export const Total = styled(Item)`
-  p,
-  span {
-    color: ${(props) => props.theme.colors.base.subtitle};
-    font: ${(props) => props.theme.fonts.roboto.textLBold};
-  }
+  ${({ theme }) => css`
+    p,
+    span {
+      color: ${theme.colors.base.subtitle};
+      font: ${theme.fonts.roboto.textLBold};
+    }
+  `}
 `

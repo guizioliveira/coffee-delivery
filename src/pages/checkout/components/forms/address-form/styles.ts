@@ -4,7 +4,7 @@ const baseGridProps = styled.div`
   display: grid;
   gap: 0.75rem;
 
-  @media screen and (max-width: 768px) {
+  @media screen and (max-width: ${({ theme }) => theme.screen.m}) {
     grid-template-columns: 1fr !important;
   }
 `

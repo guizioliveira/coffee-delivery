@@ -10,7 +10,7 @@ export const Content = styled.div`
   width: 100%;
   padding: 4rem 0;
 
-  font: ${(props) => props.theme.fonts.baloo.titleS};
+  font: ${({ theme }) => theme.fonts.baloo.titleS};
 
   button {
     width: auto;

@@ -5,7 +5,7 @@ export const Container = styled.div`
   gap: 2rem;
   width: 100%;
 
-  @media screen and (max-width: 993px) {
+  @media screen and (max-width: ${({ theme }) => theme.screen.l}) {
     flex-direction: column;
   }
 `
@@ -15,7 +15,7 @@ export const Form = styled.form`
   gap: 2rem;
   width: 100%;
 
-  @media screen and (max-width: 993px) {
+  @media screen and (max-width: ${({ theme }) => theme.screen.l}) {
     flex-direction: column;
   }
 `
@@ -37,7 +37,7 @@ export const Section = styled.div<SectionProps>`
     margin-bottom: 3px;
   }
 
-  @media screen and (max-width: 993px) {
+  @media screen and (max-width: ${({ theme }) => theme.screen.l}) {
     width: 100%;
   }
 `

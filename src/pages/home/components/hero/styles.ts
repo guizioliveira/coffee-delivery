@@ -7,16 +7,18 @@ export const HeroContainer = styled.div`
   gap: 3.5rem;
   min-height: 554px;
 
-  @media screen and (max-width: 993px) {
-    flex-direction: column;
-    margin-bottom: 3rem;
-  }
-
-  @media screen and (max-width: 545px) {
-    img {
-      display: none;
+  ${({ theme }) => css`
+    @media screen and (max-width: ${theme.screen.l}) {
+      flex-direction: column;
+      margin-bottom: 3rem;
     }
-  }
+
+    @media screen and (max-width: ${theme.screen.s}) {
+      img {
+        display: none;
+      }
+    }
+  `}
 `
 
 export const TextContent = styled.div`
@@ -24,14 +26,16 @@ export const TextContent = styled.div`
   flex-direction: column;
   gap: 4rem;
 
-  @media screen and (max-width: 993px) {
-    align-items: center;
-    text-align: center;
-  }
+  ${({ theme }) => css`
+    @media screen and (max-width: ${theme.screen.l}) {
+      align-items: center;
+      text-align: center;
+    }
 
-  @media screen and (max-width: 545px) {
-    gap: 2rem;
-  }
+    @media screen and (max-width: ${theme.screen.s}) {
+      gap: 2rem;
+    }
+  `}
 `
 
 export const HighlightBox = styled.div`
@@ -56,7 +60,7 @@ export const Grid = styled.div`
   grid-template-columns: auto auto;
   gap: 1.25rem 2.5rem;
 
-  @media screen and (max-width: 545px) {
+  @media screen and (max-width: ${({ theme }) => theme.screen.s}) {
     grid-template-columns: 1fr;
   }
 `
