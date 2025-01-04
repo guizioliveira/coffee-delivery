@@ -3,9 +3,11 @@ import { Card } from './components/card'
 import { Hero } from './components/hero'
 import { ContentGrid } from './styles'
 import { Coffee } from '@/reducers/reducer'
+import useDocumentTitle from '@/hooks/useDocumentTitle'
 
 export function Home() {
   const [coffees, setCoffees] = useState<Coffee[] | null>(null)
+  useDocumentTitle('Encontre o café perfeito para qualquer hora do dia')
 
   useEffect(() => {
     fetch('/api/coffees')

@@ -12,6 +12,7 @@ import { useLocation, useNavigate } from 'react-router-dom'
 import { validators } from '../checkout/components/forms'
 import { useEffect } from 'react'
 import { FREE_SHIPPING_CITY, FREE_SHIPPING_STATE } from '@/constants'
+import useDocumentTitle from '@/hooks/useDocumentTitle'
 
 type ConfirmationData = validators.formData
 
@@ -19,6 +20,8 @@ export default function Confirmation() {
   const location = useLocation()
   const navigate = useNavigate()
   const data = location.state as ConfirmationData | undefined
+
+  useDocumentTitle('Confirmação de compra')
 
   const formatPaymentMethod = (
     method: 'credit' | 'debit' | 'cash' | undefined,

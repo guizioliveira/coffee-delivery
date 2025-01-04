@@ -1,18 +1,21 @@
 import { Box, Button, Separator, Spacing } from '@/components/ui'
 import { useStore } from '@/contexts/StoreContext'
+import useDocumentTitle from '@/hooks/useDocumentTitle'
 import { Fragment } from 'react'
 import { FormProvider, useForm } from 'react-hook-form'
+import { useNavigate } from 'react-router-dom'
+import { toast } from 'react-toastify'
 import Balance from './components/balance'
 import { CartItem } from './components/cart-item'
 import EmptyCart from './components/empty-cart'
 import { AddressForm, PaymentMethodForm, validators } from './components/forms'
 import { Container, Form as FormContainer, Section } from './styles'
-import { toast } from 'react-toastify'
-import { useNavigate } from 'react-router-dom'
 
 export function Checkout() {
   const { groupedCoffees, purchasePrice, shippingFee, removeAll } = useStore()
   const navigate = useNavigate()
+
+  useDocumentTitle('Checkout')
 
   const paymentRequestForm = useForm<validators.formData>({
     resolver: validators.resolver,
