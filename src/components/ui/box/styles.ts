@@ -1,9 +1,16 @@
 import styled, { css } from 'styled-components'
 
 export const Box = styled.div`
-  background-color: ${(props) => props.theme.colors.base.card};
-  border-radius: 6px;
-  padding: 2.5rem;
+  ${({ theme }) => css`
+    background-color: ${theme.colors.base.card};
+    border-radius: 6px;
+
+    padding: 2.5rem;
+
+    @media screen and (max-width: ${theme.screen.s}) {
+      padding: 2rem;
+    }
+  `}
 `
 
 export const BoxContent = styled.div<{

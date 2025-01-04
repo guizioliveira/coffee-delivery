@@ -43,6 +43,7 @@ export const defaultTheme = {
       textMRegular: "400 16px/130% 'Roboto', sans-serif",
       textMBold: "700 16px/130% 'Roboto', sans-serif",
       textSRegular: "400 14px/130% 'Roboto', sans-serif",
+      textSBold: "700 14px/130% 'Roboto', sans-serif",
       textXSBold: "700 12px/130% 'Roboto', sans-serif",
       tag: "700 10px/130% 'Roboto', sans-serif",
       buttonG: "700 14px/160% 'Roboto', sans-serif",

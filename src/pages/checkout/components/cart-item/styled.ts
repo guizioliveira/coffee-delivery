@@ -11,11 +11,20 @@ export const Container = styled.div`
 export const ItemInformation = styled.div`
   display: flex;
   gap: 20px;
+
+  @media screen and (max-width: ${({ theme }) => theme.screen.s}) {
+    gap: 12px;
+  }
 `
 
 export const Image = styled.img`
   width: 64px;
   height: 64px;
+
+  @media screen and (max-width: ${({ theme }) => theme.screen.s}) {
+    width: 50px;
+    height: 50px;
+  }
 `
 
 export const Controller = styled.div`
@@ -32,4 +41,8 @@ export const Quantity = styled.div`
 
 export const Price = styled.p`
   font: ${({ theme }) => theme.fonts.roboto.textMBold};
+
+  @media screen and (max-width: ${({ theme }) => theme.screen.s}) {
+    font: ${({ theme }) => theme.fonts.roboto.textSBold};
+  }
 `
