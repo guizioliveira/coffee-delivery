@@ -51,8 +51,8 @@ export function Card({ data }: CardProps) {
         </Price>
         <CartAction>
           <InputNumber onChange={(newQuantity) => setQuantity(newQuantity)} />
-          <StateButton>
-            <ShoppingCart size={22} weight="fill" onClick={handleAddToCart} />
+          <StateButton onClick={handleAddToCart}>
+            <ShoppingCart size={22} weight="fill" />
           </StateButton>
         </CartAction>
       </CardCheckout>

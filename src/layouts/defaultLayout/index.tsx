@@ -11,11 +11,12 @@ export function DefaultLayout() {
         <Outlet />
         <ToastContainer
           position="bottom-right"
-          autoClose={5000}
-          newestOnTop={true}
+          autoClose={2000}
+          newestOnTop={false}
           pauseOnHover
+          hideProgressBar
           theme="colored"
-          limit={3}
+          stacked
         />
       </Container>
     </>
