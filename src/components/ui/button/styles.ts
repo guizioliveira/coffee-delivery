@@ -12,8 +12,9 @@ const variantStyles = {
     color: ${({ theme }) => theme.colors.base.white};
     padding: 12px 8px;
 
-    &:hover {
-      background: ${({ theme }) => theme.colors['yellow-dark']};
+    &:not(:disabled):hover {
+      background-color: ${({ theme }) => theme.colors['yellow-dark']};
+      transition: background-color 0.2s;
     }
   `,
   secondary: css`
@@ -22,8 +23,9 @@ const variantStyles = {
     color: ${({ theme }) => theme.colors.base.subtitle};
     padding: 8px;
 
-    &:hover {
-      background: ${({ theme }) => theme.colors.base.hover};
+    &:not(:disabled):hover {
+      background-color: ${({ theme }) => theme.colors.base.hover};
+      transition: background-color 0.2s;
     }
   `,
 }
@@ -45,5 +47,10 @@ export const Button = styled('button').withConfig({
 
   svg {
     color: ${(props) => props.theme.colors.purple};
+  }
+
+  &:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
   }
 `

@@ -29,7 +29,10 @@ export function Checkout() {
     },
   })
 
-  const { handleSubmit } = paymentRequestForm
+  const {
+    handleSubmit,
+    formState: { isSubmitting },
+  } = paymentRequestForm
 
   function handleCreateNewPaymentRequest(data: validators.formData) {
     const payload = {
@@ -82,7 +85,9 @@ export function Checkout() {
                 <Spacing apparence="l" />
 
                 <Box.content>
-                  <Button type="submit">confirmar pedido</Button>
+                  <Button type="submit" disabled={isSubmitting}>
+                    confirmar pedido
+                  </Button>
                 </Box.content>
               </Box.root>
             </Section>
